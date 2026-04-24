@@ -2,7 +2,7 @@ import { z } from 'zod'
 
 export const reportSchema = z.object({
   title: z.string().min(3),
-  description: z.string().min(5),
+  description: z.string().optional(),
   disasterType: z.string(),
   latitude: z.number(),
   longitude: z.number(),

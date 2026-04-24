@@ -14,9 +14,11 @@ export default async function fetchWithRetry(url: string, options: any, retries 
 
       clearTimeout(timeout);
 
-      if(!res.ok) {
+      if (!res.ok) {
         const text = await res.text();
-        console.error("API ERROR", text);
+        if (res.status >= 400 && res.status < 500) {
+          throw new Error(text || "Client error");
+        }
         throw new Error(text || "Request failed");
       }
 

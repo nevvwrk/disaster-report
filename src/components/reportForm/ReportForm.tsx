@@ -34,6 +34,7 @@ export default function ReportForm({ locale }: Props) {
   const [area, setArea] = useState<string>('');
 
 
+
   // 📍 Get location
   const getLocation = () => {
     if (!navigator.geolocation) {
