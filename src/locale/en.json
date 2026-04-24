@@ -1,0 +1,41 @@
+{
+    "common": {
+        "submit": "Submit",
+        "loading": "Submitting...",
+        "noFile": "No file selected"
+    },
+    "report": {
+        "title": "Select an Incident",
+        "description": "Please select the incident you want to report",
+        "disasterType": {
+            "flood": "Flood",
+            "earthquake": "Earthquake",
+            "fire": "Fire",
+            "storm": "Storm",
+            "other": "Other",
+            "customPlaceholder": "Specify..."
+        },
+        "location": "Tap to get location",
+        "locLoading": "Getting location...",
+        "locationError": {
+            "permissionDenied": "Unable to get location: Permission denied",
+            "positionUnavailable": "Unable to get location: Position unavailable",
+            "timeout": "Unable to get location: Timeout",
+            "unknownError": "Unable to get location: Unknown error"
+        },
+        "severity": {
+            "selectSeverity": "Select severity",
+            "low": "Low",
+            "medium": "Medium",
+            "high": "High",
+            "severityError":"Please select severity"
+        },
+        "contact": {
+            "phone": "Phone (optional)",
+            "email": "Email (optional)"
+        }
+    },
+    "login": {
+        "login_header": "Admin login"
+    }
+}

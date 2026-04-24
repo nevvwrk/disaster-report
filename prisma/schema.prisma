@@ -1,0 +1,73 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Reports {
+  id String @id @default(uuid())
+  title String
+  description String
+  disasterType DisasterType @default(OTHER)
+  latitude Float
+  longitude Float
+  area String?
+  imageUrl String[]
+  severity Severity @default(LOW)
+  tel String?
+  email String?
+  status Status @default(PENDING)
+  createdAt DateTime @default(now())
+  isDelete Boolean @default(false)
+}
+
+model Users {
+  id String @id @default (uuid())
+  name String
+  email String @unique
+  password String
+  role Role @default(USER)
+  userAreas UserArea[]
+  createdAt DateTime @default(now())
+}
+
+model UserArea {
+  id Int @id @default(autoincrement())
+  userId String
+  province String
+
+  user Users @relation(fields: [userId], references: [id])
+}
+
+enum Status {
+  PENDING
+  VERIFYING
+  PROGESSING
+  RESOLVED
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+enum DisasterType {
+  FLOOD
+  EARTHQUAKE
+  FIRE
+  STORM
+  OTHER
+}
+
+enum Severity {
+  LOW
+  MEDIUM
+  HIGH
+}
