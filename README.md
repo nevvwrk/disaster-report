@@ -33,3 +33,5 @@ services:
 volumes:
   db_data:
 ```
+Image show preview of web application
+![alt text](https://i.ibb.co/fGV1gxWm/disaster-report.png)
