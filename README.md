@@ -35,3 +35,8 @@ volumes:
 ```
 Image show preview of web application<br>
 ![alt text](https://i.ibb.co/fGV1gxWm/disaster-report.png)
+![alt text](https://i.ibb.co/bkBDnQ8/disaster-report4.png)
+![alt text](https://i.ibb.co/mVXbtFjF/disaster-report5.png)
+![alt text](https://i.ibb.co/mCTfpmRj/disaster-report3.png)
+
+
