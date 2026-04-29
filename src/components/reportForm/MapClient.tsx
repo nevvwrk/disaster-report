@@ -61,9 +61,8 @@ export default function MapClient({ lat, lng, setLocation, severity }: Props) {
         <div className="w-full h-[400px] relative z-40">
             <MapContainer
                 key={`${lat}-${lng}`}
-                center={{ lat, lng}}
-                gestureHandling={true}
-                zoom={location && 13}
+                center={[lat, lng]}
+                zoom={13}
                 style={{ height: "400px", width: "100%" }}
             >
                 <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />

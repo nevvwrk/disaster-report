@@ -15,9 +15,12 @@ export default function LocaleSwticher() {
         return segments.join("/");
     }
     return (
-        <div className="p-4 flex justify-end gap-2">
-            <Link href={getPath('en')}>EN</Link>
-            <Link href={getPath('th')}>TH</Link>
-        </div>
+        <nav className="p-4 flex justify-between gap-2">
+            <Link href="/th" className="text-xl font-bold p-2 bg-green-500 rounded text-white">Diaster reports system</Link>
+            <div className="flex gap-4">
+                <Link href={getPath('en')}>EN</Link>
+                <Link href={getPath('th')}>TH</Link>
+            </div>
+        </nav>
     )
 }
