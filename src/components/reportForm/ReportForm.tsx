@@ -1,5 +1,5 @@
 "use client";
-import { useState, useMemo, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { compressImage } from "../../lib/compressImage";
 import { getDictionary } from "../../lib/i18n";
 import fetchWithRetry from "@/lib/fetchWithRetry";
@@ -213,7 +213,7 @@ export default function ReportForm({ locale }: Props) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-3 max-w-md"
+      className="flex flex-col gap-3 max-w-2xl"
     >
       {/* Title */}
       <input
@@ -322,7 +322,7 @@ export default function ReportForm({ locale }: Props) {
       </select>
 
       {/* Contact */}
-      <div className="flex flex-rows gap-2">
+      <div className="flex flex-rows gap-2 flex-wrap">
         <input
           name="telephone"
           type="tel"

@@ -33,6 +33,7 @@ export default function DashboardClient({ reports, user, locale, dict }: any) {
     const [loadingId, setLoadingId] = useState<string | null>(null);
     const [statusFilter, setStatusFilter] = useState<string>("ALL");
     const [localReports, setLocalReports] = useState(reports);
+    const [previewImage, setPreviewImage] = useState<string | null>(null);
 
     const filterWithProvince = localReports.filter((r: any) => {
         const matchStatus =
@@ -47,15 +48,30 @@ export default function DashboardClient({ reports, user, locale, dict }: any) {
     const updateStatus = async (id: string, status: string) => {
         setLoadingId(id);
 
+        const oldReports = localReports;
+
         setLocalReports((prev: any[]) =>
-        prev.map((r) =>
-            r.id === id ? { ...r, status } : r
-        )
-    );
-        await fetch("/api/reports", {
-            method: "PUT",
-            body: JSON.stringify({ id, status }),
-        });
+            prev.map((r) => (r.id === id ? { ...r, status } : r))
+        );
+
+        try {
+            const res = await fetch("/api/reports", {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ id, status }),
+            });
+
+            if (!res.ok) {
+                throw new Error("Failed to update status");
+            }
+        } catch (error) {
+            console.error(error);
+            setLocalReports(oldReports);
+        } finally {
+            setLoadingId(null);
+        }
     };
 
     return (
@@ -99,13 +115,20 @@ export default function DashboardClient({ reports, user, locale, dict }: any) {
 
                     {/* 🖼 images */}
                     <div className="flex gap-2 flex-wrap">
-                        {r.imageUrl?.map((img: string, i: number) => (
-                            <img
-                                key={i}
-                                src={img}
-                                className="w-24 h-24 object-cover rounded"
-                            />
-                        ))}
+                        {Array.isArray(r.imageUrl) &&
+                            r.imageUrl.map((img: string, i: number) => {
+                                const src = img.startsWith("/") ? img : `/${img}`;
+
+                                return (
+                                    <img
+                                        key={i}
+                                        src={src}
+                                        alt={r.title || "report image"}
+                                        onClick={() => setPreviewImage(src)}
+                                        className="w-24 h-24 object-cover rounded border cursor-pointer hover:opacity-80"
+                                    />
+                                );
+                            })}
                     </div>
                     {r.area}
 
@@ -128,6 +151,19 @@ export default function DashboardClient({ reports, user, locale, dict }: any) {
                     </div>
                 </div>
             ))}
+            {previewImage && (
+                <div
+                    className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4"
+                    onClick={() => setPreviewImage(null)}
+                >
+                    <img
+                        src={previewImage}
+                        alt="Preview"
+                        onClick={(e) => e.stopPropagation()}
+                        className="max-w-[90vw] max-h-[90vh] object-contain rounded-lg bg-white"
+                    />
+                </div>
+            )}
         </main>
     );
 }

@@ -17,7 +17,18 @@ export async function POST(req: Request) {
     console.log(body)
     const parsed = reportSchema.parse(body);
     const report = await prisma.reports.create({
-      data: parsed
+      data: {
+        title: parsed.title,
+        description: parsed.description || "",
+        disasterType: parsed.disasterType,
+        latitude: parsed.latitude,
+        longitude: parsed.longitude,
+        area: parsed.area || "",
+        imageUrl: parsed.imageUrl ?? [],
+        severity: parsed.severity,
+        tel: parsed.tel || "",
+        email: parsed.email || "",
+      }
     });
     return NextResponse.json(report)
   } catch(error) {
