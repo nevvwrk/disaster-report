@@ -1,6 +1,6 @@
 #feature
 - <b>Admin</b> Dashboard for admin can update status each of disaster report for show users
-- <b>User</b> can view all report or near location of user stay for news update about disaster
+- <b>User</b> can view all report or near location of user stay for news update about disaster / report disaster for public news
 
 ## this docker-compose.yml
 ```
