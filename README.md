@@ -2,6 +2,9 @@
 - <b>Admin</b> Dashboard for admin can update status each of disaster report for show users / approve report each of user reported
 - <b>User</b> can view all report or near location of user stay for news update about disaster / report disaster for public news
 
+#expectations
+- implement with many sensors in real forest location for detect and show realtime status of heating and use many sensing in real location for analyze to determine between hot spot or wildfire
+
 ## this docker-compose.yml
 ```
 services:
